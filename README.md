@@ -55,7 +55,7 @@ This is a machine learning-powered web application designed to predict diseases 
 
 5. **Run the application**:
     ```bash
-    streamlit run main.py
+    streamlit run app.py
     ```
 
     After running this command, the app will be available in your browser at `http://localhost:8501`.
