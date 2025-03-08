@@ -81,5 +81,5 @@ This project is licensed under the MIT License - see the [LICENSE](LICENSE) file
 
 - **Jiyanshu**
 - email: [jainjiyanshu@gmail.com]
-  GitHub: [https://github.com/jiyanshu.j]
+  GitHub: [https://github.com/jiyanshuj]
 #
