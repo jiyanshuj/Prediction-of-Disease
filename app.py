@@ -8,11 +8,24 @@ st.set_page_config(page_title="Prediction of Disease Outbreaks", layout="wide", 
 
 # Get the working directory of the main.py
 working_dir = os.path.dirname(os.path.abspath(__file__))
+print(f"Working Directory: {working_dir}")  # To verify the directory path in case of issues
 
-# Load the saved models
-diabetes_model = pickle.load(open(f'{working_dir}/saved_models/diabetes_model.sav', 'rb'))
-heart_disease_model = pickle.load(open(f'{working_dir}/saved_models/heart_disease_model.sav', 'rb'))
-parkinsons_model = pickle.load(open(f'{working_dir}/saved_models/parkinsons_model.sav', 'rb'))
+# Load the saved models with error handling
+def load_model(model_name):
+    try:
+        model_path = os.path.join(working_dir, 'saved_models', model_name)
+        if not os.path.exists(model_path):
+            raise FileNotFoundError(f"{model_name} not found in saved_models folder.")
+        with open(model_path, 'rb') as f:
+            return pickle.load(f)
+    except Exception as e:
+        st.error(f"Error loading model {model_name}: {e}")
+        return None
+
+# Load all models
+diabetes_model = load_model('diabetes_model.sav')
+heart_disease_model = load_model('heart_disease_model.sav')
+parkinsons_model = load_model('parkinsons_model.sav')
 
 # Sidebar for navigation
 with st.sidebar:
@@ -20,7 +33,7 @@ with st.sidebar:
                            menu_icon='hospital-fill', icons=['activity', 'heart', 'person'], default_index=0)
 
 # Diabetes Prediction Page
-if selected == 'Diabetes Prediction':
+if selected == 'Diabetes Prediction' and diabetes_model:
     st.title('Diabetes Prediction using ML')
 
     col1, col2, col3 = st.columns(3)
@@ -55,7 +68,7 @@ if selected == 'Diabetes Prediction':
     st.success(diab_diagnosis)
 
 # Heart Disease Prediction Page
-if selected == 'Heart Disease Prediction':
+if selected == 'Heart Disease Prediction' and heart_disease_model:
     st.title('Heart Disease Prediction using ML')
 
     col1, col2, col3 = st.columns(3)
@@ -100,7 +113,7 @@ if selected == 'Heart Disease Prediction':
     st.success(heart_diagnosis)
 
 # Parkinson's Prediction Page
-if selected == "Parkinsons Prediction":
+if selected == "Parkinsons Prediction" and parkinsons_model:
     st.title("Parkinson's Disease Prediction using ML")
 
     col1, col2, col3, col4, col5 = st.columns(5)
