@@ -80,6 +80,6 @@ This project is licensed under the MIT License - see the [LICENSE](LICENSE) file
 ## Author
 
 - **Jiyanshu**
-- email: [jainjiyanshu@gmail.com]
+- LinkedIN: [https://www.linkedin.com/in/jiyanshu-jain/]
   GitHub: [https://github.com/jiyanshuj]
 #
